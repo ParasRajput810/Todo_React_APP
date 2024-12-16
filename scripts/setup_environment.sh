@@ -1,14 +1,17 @@
 #!/bin/bash
 set -e
 
-# Create the target directory
+# Define the target directory
 TARGET_DIR="/var/www/my-react-app"
-if [ ! -d "$TARGET_DIR" ]; then
-  mkdir -p "$TARGET_DIR"
+
+# Check if the directory exists
+if [ -d "$TARGET_DIR" ]; then
+  echo "Directory $TARGET_DIR exists. Cleaning up..."
+  rm -rf "$TARGET_DIR"  # Remove the entire directory
 fi
 
-# Clean up any previous deployments
-rm -rf "$TARGET_DIR"/*
+# Recreate the target directory
+mkdir -p "$TARGET_DIR"
 
 # Clone the repository into the target directory
 GIT_REPO="https://github.com/ParasRajput810/Todo_React_APP.git"
